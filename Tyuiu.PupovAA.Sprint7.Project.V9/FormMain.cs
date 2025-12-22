@@ -14,7 +14,6 @@ namespace Tyuiu.PupovAA.Sprint7.Project.V9
 
         private string filePath;
         
-        
         private void buttonOpenFile_PAA_Click(object sender, EventArgs e)
         {
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
@@ -28,7 +27,7 @@ namespace Tyuiu.PupovAA.Sprint7.Project.V9
                         filePath = openFileDialog.FileName;
 
                         
-                        string[,] matrix = LoadFromFile(filePath);
+                        string[,] matrix = DataService.LoadFromFile(filePath);
 
                         
                         dataGridViewVideo_PAA.Rows.Clear();
@@ -70,18 +69,48 @@ namespace Tyuiu.PupovAA.Sprint7.Project.V9
 
             try
             {
-                
+                if (File.Exists(filePath))
+                {
+                    File.Delete(filePath);
+                }
+
                 int rows = dataGridViewVideo_PAA.RowCount;
                 int cols = dataGridViewVideo_PAA.ColumnCount;
+                string str = "";
 
-                
-                var saved = SaveToFileWithLibrary(filePath, rows, cols);
-
-                if (saved)
+                for (int i = 0; i < rows; i++)
                 {
-                    MessageBox.Show("Файл сохранен!", "Поздравляю!",MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+
+                    bool rowHasData = false;
+                    for (int j = 0; j < cols; j++)
+                    {
+
+
+                        if (dataGridViewVideo_PAA.Rows[i].Cells[j].Value != null && !string.IsNullOrWhiteSpace(dataGridViewVideo_PAA.Rows[i].Cells[j].Value.ToString()))
+                        {
+                            rowHasData = true;
+                            str += dataGridViewVideo_PAA.Rows[i].Cells[j].Value;
+                            if (j == cols - 1)
+                            {
+                                continue;
+                            }
+                            else
+                            {
+                                str += ";";
+                            }
+
+                        }
+
+                        
+                    }
+                    if (rowHasData)
+                    {
+                        File.AppendAllText(filePath, str + Environment.NewLine);
+                    }
+                    str = "";
                 }
-            }
 
                 MessageBox.Show("Файл сохранен!", "Поздравляю!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
