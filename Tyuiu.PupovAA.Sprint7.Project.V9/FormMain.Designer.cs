@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             groupBox1 = new GroupBox();
+            buttonOpenFile_PAA = new Button();
             dataGridViewVideo_PAA = new DataGridView();
             Column1 = new DataGridViewTextBoxColumn();
             Column2 = new DataGridViewTextBoxColumn();
@@ -38,12 +40,11 @@
             Column5 = new DataGridViewTextBoxColumn();
             Column6 = new DataGridViewTextBoxColumn();
             Column7 = new DataGridViewTextBoxColumn();
-            buttonOpenFile_PAA = new Button();
             buttonSaveFile_PAA = new Button();
-            button3 = new Button();
+            buttonDelete_PAA = new Button();
             groupBox2 = new GroupBox();
             groupBox3 = new GroupBox();
-            button4 = new Button();
+            buttonAddRows__PAA = new Button();
             buttonAbout_PAA = new Button();
             groupBox4 = new GroupBox();
             groupBox1.SuspendLayout();
@@ -59,13 +60,24 @@
             groupBox1.Controls.Add(dataGridViewVideo_PAA);
             groupBox1.Location = new Point(0, 102);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(1090, 615);
+            groupBox1.Size = new Size(1114, 615);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Каталог видео";
             // 
+            // buttonOpenFile_PAA
+            // 
+            buttonOpenFile_PAA.Image = Properties.Resources.book_add;
+            buttonOpenFile_PAA.Location = new Point(6, 19);
+            buttonOpenFile_PAA.Name = "buttonOpenFile_PAA";
+            buttonOpenFile_PAA.Size = new Size(112, 79);
+            buttonOpenFile_PAA.TabIndex = 1;
+            buttonOpenFile_PAA.UseVisualStyleBackColor = true;
+            buttonOpenFile_PAA.Click += buttonOpenFile_PAA_Click;
+            // 
             // dataGridViewVideo_PAA
             // 
+            dataGridViewVideo_PAA.AllowUserToAddRows = false;
             dataGridViewVideo_PAA.AllowUserToDeleteRows = false;
             dataGridViewVideo_PAA.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewVideo_PAA.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -75,7 +87,8 @@
             dataGridViewVideo_PAA.Name = "dataGridViewVideo_PAA";
             dataGridViewVideo_PAA.RowHeadersVisible = false;
             dataGridViewVideo_PAA.RowHeadersWidth = 51;
-            dataGridViewVideo_PAA.Size = new Size(1084, 589);
+            dataGridViewVideo_PAA.ScrollBars = ScrollBars.Vertical;
+            dataGridViewVideo_PAA.Size = new Size(1108, 589);
             dataGridViewVideo_PAA.TabIndex = 0;
             // 
             // Column1
@@ -125,34 +138,25 @@
             Column7.MinimumWidth = 6;
             Column7.Name = "Column7";
             // 
-            // buttonOpenFile_PAA
-            // 
-            buttonOpenFile_PAA.Image = Properties.Resources.book_add;
-            buttonOpenFile_PAA.Location = new Point(12, 19);
-            buttonOpenFile_PAA.Name = "buttonOpenFile_PAA";
-            buttonOpenFile_PAA.Size = new Size(112, 79);
-            buttonOpenFile_PAA.TabIndex = 1;
-            buttonOpenFile_PAA.UseVisualStyleBackColor = true;
-            buttonOpenFile_PAA.Click += buttonOpenFile_PAA_Click;
-            // 
             // buttonSaveFile_PAA
             // 
             buttonSaveFile_PAA.Image = Properties.Resources.book_edit;
-            buttonSaveFile_PAA.Location = new Point(130, 20);
+            buttonSaveFile_PAA.Location = new Point(124, 17);
             buttonSaveFile_PAA.Name = "buttonSaveFile_PAA";
-            buttonSaveFile_PAA.Size = new Size(112, 79);
+            buttonSaveFile_PAA.Size = new Size(112, 78);
             buttonSaveFile_PAA.TabIndex = 2;
             buttonSaveFile_PAA.UseVisualStyleBackColor = true;
             buttonSaveFile_PAA.Click += buttonSaveFile_PAA_Click;
             // 
-            // button3
+            // buttonDelete_PAA
             // 
-            button3.Location = new Point(6, 21);
-            button3.Name = "button3";
-            button3.Size = new Size(102, 79);
-            button3.TabIndex = 3;
-            button3.Text = "button3";
-            button3.UseVisualStyleBackColor = true;
+            buttonDelete_PAA.Image = Properties.Resources.bullet_toggle_minus;
+            buttonDelete_PAA.Location = new Point(148, 23);
+            buttonDelete_PAA.Name = "buttonDelete_PAA";
+            buttonDelete_PAA.Size = new Size(105, 71);
+            buttonDelete_PAA.TabIndex = 3;
+            buttonDelete_PAA.UseVisualStyleBackColor = true;
+            buttonDelete_PAA.Click += buttonDelete_PAA_Click;
             // 
             // groupBox2
             // 
@@ -168,24 +172,24 @@
             // groupBox3
             // 
             groupBox3.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            groupBox3.Controls.Add(button4);
-            groupBox3.Controls.Add(button3);
+            groupBox3.Controls.Add(buttonAddRows__PAA);
+            groupBox3.Controls.Add(buttonDelete_PAA);
             groupBox3.Location = new Point(248, 0);
             groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(645, 105);
+            groupBox3.Size = new Size(669, 105);
             groupBox3.TabIndex = 5;
             groupBox3.TabStop = false;
             groupBox3.Text = "Работа с таблицей";
             // 
-            // button4
+            // buttonAddRows__PAA
             // 
-            button4.Location = new Point(114, 23);
-            button4.Name = "button4";
-            button4.Size = new Size(94, 76);
-            button4.TabIndex = 4;
-            button4.Text = "button4";
-            button4.UseVisualStyleBackColor = true;
-            button4.Click += button4_Click;
+            buttonAddRows__PAA.Image = (Image)resources.GetObject("buttonAddRows__PAA.Image");
+            buttonAddRows__PAA.Location = new Point(16, 22);
+            buttonAddRows__PAA.Name = "buttonAddRows__PAA";
+            buttonAddRows__PAA.Size = new Size(105, 73);
+            buttonAddRows__PAA.TabIndex = 4;
+            buttonAddRows__PAA.UseVisualStyleBackColor = true;
+            buttonAddRows__PAA.Click += buttonAddRows_PAA_Click;
             // 
             // buttonAbout_PAA
             // 
@@ -201,7 +205,7 @@
             // 
             groupBox4.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             groupBox4.Controls.Add(buttonAbout_PAA);
-            groupBox4.Location = new Point(894, 0);
+            groupBox4.Location = new Point(918, 0);
             groupBox4.Name = "groupBox4";
             groupBox4.Size = new Size(196, 105);
             groupBox4.TabIndex = 6;
@@ -212,7 +216,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1090, 717);
+            ClientSize = new Size(1114, 717);
             Controls.Add(groupBox4);
             Controls.Add(groupBox3);
             Controls.Add(groupBox2);
@@ -234,12 +238,12 @@
         private DataGridView dataGridViewVideo_PAA;
         private Button buttonOpenFile_PAA;
         private Button buttonSaveFile_PAA;
-        private Button button3;
+        private Button buttonDelete_PAA;
         private GroupBox groupBox2;
         private GroupBox groupBox3;
         private GroupBox groupBox4;
         private Button buttonAbout_PAA;
-        private Button button4;
+        private Button buttonAddRows__PAA;
         private DataGridViewTextBoxColumn Column1;
         private DataGridViewTextBoxColumn Column2;
         private DataGridViewTextBoxColumn Column3;

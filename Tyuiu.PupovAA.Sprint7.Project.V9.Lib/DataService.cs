@@ -2,7 +2,7 @@
 {
     public class DataService
     {
-        public static string[,] LoadFromFile(string filePath)
+        public static string[,] LoadFile(string filePath)
         {
             string[] allLines = File.ReadAllLines(filePath);
 
@@ -35,7 +35,7 @@
             return result;
         }
 
-        public static bool SaveArrayToFile(string filePath, string[,] data)
+        public static bool SaveToFile(string filePath, string[,] data)
         {
             try
             {
@@ -83,6 +83,35 @@
             {
                 return false;
             }
+
+        }
+        public static string DeleteRows(string[,] data)
+        {
+            int rows = data.GetLength(0);
+            int cols = data.GetLength(1);
+            string result = "";
+
+            for (int i = 0; i < rows; i++)
+            {
+                bool isEmpty = true;
+                for (int j = 0; j < cols; j++)
+                {
+                    if (!string.IsNullOrWhiteSpace(data[i, j]))
+                    {
+                        isEmpty = false;
+                        break;
+                    }
+                }
+
+                if (isEmpty)
+                {
+                    if (!string.IsNullOrEmpty(result))
+                        result += ",";
+                    result += i.ToString();
+                }
+            }
+
+            return result;
         }
     }
 }

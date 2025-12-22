@@ -141,4 +141,19 @@
   <metadata name="Column7.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="buttonAddRows__PAA.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
+        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAGxSURBVFhHxZXdSgJRFIXPRbdd6kv0EkHv5LXOTETI
+        hObPiFmmBUVQ9EeBJFkqhlRURFBQEFRX1SvsWIMjejai0u504MOZNWvts8aLOYqI1H/CBNMwwTRMMA0T
+        TMME0zDBNEwwDRNMwwQdpdRENBo9chybbHs04EUGWQzQZ45bYBJDP7++xwIZZCUKhGKxmD90bt6luJug
+        uJscQML3wIsMshIFwhj29v5BC4kULaY9SmVyPsEK7vEMHng7BcJiBZ5fXv1NsrklyuYK/m+wejV44BUt
+        YFkWPTw+UdrL+xsk0x4lU163AK6h4Rk88CIjWuD27p4yPW89aMEDr3iBq+sbyhdW9f3Yggde0QK2ZdFF
+        +5JKaxu0Ulqn5WKZCsVyd1NcQ8MzeOBFRq6AbVGz1abNre0+gqXr8CIjWqDeaNHO7kEfwdJ1eIUL2HR6
+        3qC9w2PaHwI88Ha+hDIFZh2HzuotqlRrVDkZQrXme5GRKhCKRCJNDNQPnUHAi4zUpxgHypRSalopNTMi
+        8CIjchjhSMUgvA3+0lGAFxmR4/jXS585VoG/hgmmYYJpmGAaJpiGCab5AayG9RQIDTjlAAAAAElFTkSu
+        QmCC
+</value>
+  </data>
 </root>

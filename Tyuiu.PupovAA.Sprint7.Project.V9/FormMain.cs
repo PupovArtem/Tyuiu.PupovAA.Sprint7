@@ -14,7 +14,7 @@ namespace Tyuiu.PupovAA.Sprint7.Project.V9
         }
 
         private string filePath;
-        
+
         private void buttonOpenFile_PAA_Click(object sender, EventArgs e)
         {
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
@@ -28,7 +28,7 @@ namespace Tyuiu.PupovAA.Sprint7.Project.V9
                         filePath = openFileDialog.FileName;
 
 
-                        string[,] matrix = DataService.LoadFromFile(filePath);
+                        string[,] matrix = DataService.LoadFile(filePath);
 
 
                         dataGridViewVideo_PAA.Rows.Clear();
@@ -79,7 +79,7 @@ namespace Tyuiu.PupovAA.Sprint7.Project.V9
                 {
                     for (int j = 0; j < cols; j++)
                     {
-                        var cellValue = dataGridViewVideo_PAA.Rows[i].Cells[j].Value;
+                        object cellValue = dataGridViewVideo_PAA.Rows[i].Cells[j].Value;
                         string result;
                         if (cellValue != null)
                         {
@@ -89,13 +89,13 @@ namespace Tyuiu.PupovAA.Sprint7.Project.V9
                         {
                             result = "";
                         }
-                        array[i, j] = result; 
+                        array[i, j] = result;
                     }
                 }
-                bool save = DataService.SaveArrayToFile(filePath, array);
+                bool save = DataService.SaveToFile(filePath, array);
                 if (save)
                 {
-                    MessageBox.Show("Файл сохранен!", "Поздравляю!",MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Файл сохранен!", "Поздравляю!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch
@@ -110,9 +110,71 @@ namespace Tyuiu.PupovAA.Sprint7.Project.V9
             formAbout.ShowDialog();
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void buttonAddRows_PAA_Click(object sender, EventArgs e)
         {
+            try
+            {
+                dataGridViewVideo_PAA.Rows.Add();
 
+            }
+            catch
+            {
+                MessageBox.Show($"Ошибка в добавлении строки", "Ошибка");
+            }
+        }
+
+        private void buttonDelete_PAA_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                
+                int rows = dataGridViewVideo_PAA.RowCount;
+                int cols = dataGridViewVideo_PAA.ColumnCount;
+                string[,] data = new string[rows, cols];
+
+                for (int i = 0; i < rows; i++)
+                {
+                    for (int j = 0; j < cols; j++)
+                    {
+                        data[i, j] = dataGridViewVideo_PAA.Rows[i].Cells[j].Value?.ToString() ?? "";
+                    }
+                }
+
+                
+                string result = DataService.DeleteRows(data);
+
+                if (string.IsNullOrEmpty(result))
+                {
+                    MessageBox.Show("Нет пустых строк", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                
+                
+
+                string[] strIndexes = result.Split(',');
+                for (int i = strIndexes.Length - 1; i >= 0; i--)
+                {
+                    int idx = int.Parse(strIndexes[i]);
+                    if (idx < dataGridViewVideo_PAA.Rows.Count)
+                    {
+                        dataGridViewVideo_PAA.Rows.RemoveAt(idx);
+                    }
+                }
+
+                
+
+                MessageBox.Show($"Удалено количество строк:{strIndexes.Length}", "Поздравлю! Вы смогли удалить строку");
+            }
+            catch 
+            {
+                MessageBox.Show($"Ошибка в удалении", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
+
+        
+        
+    
+    
 }
