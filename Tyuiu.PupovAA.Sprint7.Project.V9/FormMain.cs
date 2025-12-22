@@ -1,5 +1,6 @@
 using System.Windows.Forms;
 using Tyuiu.PupovAA.Sprint7.Project.V9.Lib;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Tyuiu.PupovAA.Sprint7.Project.V9
 {
@@ -26,20 +27,20 @@ namespace Tyuiu.PupovAA.Sprint7.Project.V9
                     {
                         filePath = openFileDialog.FileName;
 
-                        
+
                         string[,] matrix = DataService.LoadFromFile(filePath);
 
-                        
+
                         dataGridViewVideo_PAA.Rows.Clear();
 
-                        
+
                         int rowCount = matrix.GetLength(0);
                         int colCount = matrix.GetLength(1);
 
-                        
+
                         for (int i = 0; i < rowCount; i++)
                         {
-                            
+
                             string[] rowValues = new string[colCount];
 
                             for (int j = 0; j < colCount; j++)
@@ -47,7 +48,7 @@ namespace Tyuiu.PupovAA.Sprint7.Project.V9
                                 rowValues[j] = matrix[i, j];
                             }
 
-                            
+
                             dataGridViewVideo_PAA.Rows.Add(rowValues);
                         }
 
@@ -69,50 +70,33 @@ namespace Tyuiu.PupovAA.Sprint7.Project.V9
 
             try
             {
-                if (File.Exists(filePath))
-                {
-                    File.Delete(filePath);
-                }
-
                 int rows = dataGridViewVideo_PAA.RowCount;
                 int cols = dataGridViewVideo_PAA.ColumnCount;
-                string str = "";
+
+                string[,] array = new string[rows, cols];
 
                 for (int i = 0; i < rows; i++)
                 {
-
-
-
-                    bool rowHasData = false;
                     for (int j = 0; j < cols; j++)
                     {
-
-
-                        if (dataGridViewVideo_PAA.Rows[i].Cells[j].Value != null && !string.IsNullOrWhiteSpace(dataGridViewVideo_PAA.Rows[i].Cells[j].Value.ToString()))
+                        var cellValue = dataGridViewVideo_PAA.Rows[i].Cells[j].Value;
+                        string result;
+                        if (cellValue != null)
                         {
-                            rowHasData = true;
-                            str += dataGridViewVideo_PAA.Rows[i].Cells[j].Value;
-                            if (j == cols - 1)
-                            {
-                                continue;
-                            }
-                            else
-                            {
-                                str += ";";
-                            }
-
+                            result = (string)cellValue;
                         }
-
-                        
+                        else
+                        {
+                            result = "";
+                        }
+                        array[i, j] = result; 
                     }
-                    if (rowHasData)
-                    {
-                        File.AppendAllText(filePath, str + Environment.NewLine);
-                    }
-                    str = "";
                 }
-
-                MessageBox.Show("Файл сохранен!", "Поздравляю!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                bool save = DataService.SaveArrayToFile(filePath, array);
+                if (save)
+                {
+                    MessageBox.Show("Файл сохранен!", "Поздравляю!",MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
             catch
             {
@@ -126,6 +110,9 @@ namespace Tyuiu.PupovAA.Sprint7.Project.V9
             formAbout.ShowDialog();
         }
 
-        
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

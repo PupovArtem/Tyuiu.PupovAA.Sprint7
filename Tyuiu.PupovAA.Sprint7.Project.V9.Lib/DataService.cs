@@ -35,8 +35,7 @@
             return result;
         }
 
-        public static bool SaveFileExactlyLikeButton(string filePath, int rows, int cols,
-           Func<int, int, string> getCellValue)
+        public static bool SaveArrayToFile(string filePath, string[,] data)
         {
             try
             {
@@ -45,6 +44,8 @@
                     File.Delete(filePath);
                 }
 
+                int rows = data.GetLength(0);
+                int cols = data.GetLength(1);
                 string str = "";
 
                 for (int i = 0; i < rows; i++)
@@ -52,12 +53,11 @@
                     bool rowHasData = false;
                     for (int j = 0; j < cols; j++)
                     {
-                        string cellValue = getCellValue(i, j);
 
-                        if (!string.IsNullOrWhiteSpace(cellValue))
+                        if (data[i, j] != null && !string.IsNullOrWhiteSpace(data[i, j]))
                         {
                             rowHasData = true;
-                            str += cellValue;
+                            str += data[i, j];
 
                             if (j == cols - 1)
                             {
