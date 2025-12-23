@@ -1,4 +1,6 @@
-﻿namespace Tyuiu.PupovAA.Sprint7.Project.V9.Lib
+﻿using System.Drawing;
+
+namespace Tyuiu.PupovAA.Sprint7.Project.V9.Lib
 {
     public class DataService
     {
@@ -6,16 +8,12 @@
         {
             string[] allLines = File.ReadAllLines(filePath);
 
-            
-
-            
             int rowCount = allLines.Length;
             int colCount = allLines[0].Split(';').Length;
 
-            
+
             string[,] result = new string[rowCount, colCount];
 
-            
             for (int i = 0; i < rowCount; i++)
             {
                 string[] cells = allLines[i].Split(';');
@@ -53,7 +51,6 @@
                     bool rowHasData = false;
                     for (int j = 0; j < cols; j++)
                     {
-
                         if (data[i, j] != null && !string.IsNullOrWhiteSpace(data[i, j]))
                         {
                             rowHasData = true;
@@ -113,5 +110,43 @@
 
             return result;
         }
+        
+
+        public static List<(int Row, int Column)> SearchWord(string[,] data, string searchText)
+        {          
+            var matches = new List<(int, int)>();
+
+            if (string.IsNullOrWhiteSpace(searchText))
+            {
+                return matches;
+            }
+            
+
+            int rows = data.GetLength(0);
+            int cols = data.GetLength(1);
+
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < cols; j++)
+                {
+                    string cellValue;
+                    if (data[i, j] != null)
+                    {
+                        cellValue = data[i, j];
+                    }
+                    else
+                    {
+                        cellValue = "";
+                    }
+                    if (cellValue.IndexOf(searchText, StringComparison.OrdinalIgnoreCase) >= 0)
+                    {
+                        matches.Add((i, j));
+                     }
+                }
+            }
+            return matches;
+        }
+            
+        
     }
 }

@@ -11,7 +11,7 @@ namespace Tyuiu.PupovAA.Sprint7.Project.V9
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new FormMain());
+            Application.Run(new FormMainProject_PAA());
         }
     }
 }

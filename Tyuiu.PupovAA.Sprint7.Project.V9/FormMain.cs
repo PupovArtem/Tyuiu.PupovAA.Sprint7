@@ -1,17 +1,46 @@
+using System;
+using System.ComponentModel;
 using System.Windows.Forms;
 using Tyuiu.PupovAA.Sprint7.Project.V9.Lib;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+
 
 namespace Tyuiu.PupovAA.Sprint7.Project.V9
 {
-    public partial class FormMain : Form
+    public partial class FormMainProject_PAA : Form
     {
 
-        public FormMain()
+        public FormMainProject_PAA()
         {
             InitializeComponent();
             buttonSaveFile_PAA.Enabled = false;
+
+
+
+            dataGridViewVideo_PAA.Columns[0].ValueType = typeof(int);
+            dataGridViewVideo_PAA.Columns[2].ValueType = typeof(double);
+
+
+            dataGridViewVideo_PAA.Columns[4].ValueType = typeof(double);
+
+
+
+
+
+            dataGridViewVideo_PAA.DataError += (s, e) =>
+            {
+                MessageBox.Show("Введены буквы вместо цифр!", "Ошибка ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                e.ThrowException = false;
+
+            };
+
+
+            dataGridViewVideo_PAA.SortCompare += dataGridViewVideo_PAA_SortCompare;
+
+
+
+
         }
+
 
         private string filePath;
 
@@ -52,6 +81,7 @@ namespace Tyuiu.PupovAA.Sprint7.Project.V9
                             dataGridViewVideo_PAA.Rows.Add(rowValues);
                         }
 
+
                         buttonSaveFile_PAA.Enabled = true;
 
                     }
@@ -79,11 +109,11 @@ namespace Tyuiu.PupovAA.Sprint7.Project.V9
                 {
                     for (int j = 0; j < cols; j++)
                     {
-                        object cellValue = dataGridViewVideo_PAA.Rows[i].Cells[j].Value;
+                        object Value = dataGridViewVideo_PAA.Rows[i].Cells[j].Value;
                         string result;
-                        if (cellValue != null)
+                        if (Value != null)
                         {
-                            result = (string)cellValue;
+                            result = (string)Value;
                         }
                         else
                         {
@@ -127,7 +157,7 @@ namespace Tyuiu.PupovAA.Sprint7.Project.V9
         {
             try
             {
-                
+
                 int rows = dataGridViewVideo_PAA.RowCount;
                 int cols = dataGridViewVideo_PAA.ColumnCount;
                 string[,] data = new string[rows, cols];
@@ -140,7 +170,7 @@ namespace Tyuiu.PupovAA.Sprint7.Project.V9
                     }
                 }
 
-                
+
                 string result = DataService.DeleteRows(data);
 
                 if (string.IsNullOrEmpty(result))
@@ -149,8 +179,8 @@ namespace Tyuiu.PupovAA.Sprint7.Project.V9
                     return;
                 }
 
-                
-                
+
+
 
                 string[] strIndexes = result.Split(',');
                 for (int i = strIndexes.Length - 1; i >= 0; i--)
@@ -162,19 +192,52 @@ namespace Tyuiu.PupovAA.Sprint7.Project.V9
                     }
                 }
 
-                
+
 
                 MessageBox.Show($"Удалено количество строк:{strIndexes.Length}", "Поздравлю! Вы смогли удалить строку");
             }
-            catch 
+            catch
             {
                 MessageBox.Show($"Ошибка в удалении", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-    }
 
-        
-        
-    
-    
+        private void dataGridViewVideo_PAA_SortCompare(object sender, DataGridViewSortCompareEventArgs e)
+        {
+            if (e.Column.Index == 0 || e.Column.Index == 4)
+            {
+                if (e.Column.Index == 0 || e.Column.Index == 4)
+                {
+                    double num1 = ConvertToDouble(e.CellValue1);
+                    double num2 = ConvertToDouble(e.CellValue2);
+
+                    e.SortResult = num1.CompareTo(num2);
+                    e.Handled = true;
+                }
+            }
+
+        }
+        private double ConvertToDouble(object value)
+        {
+            if (value == null)
+            {
+                return 0;
+            }
+            string str = value.ToString().Replace(',', '.');
+            return double.TryParse(str, out double result) ? result : 0;
+        }
+
+        private void dataGridViewVideo_PAA_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void buttonOpenSearch_PAA_Click(object sender, EventArgs e)
+        {
+            FormSearch_PAA searchForm = new FormSearch_PAA(dataGridViewVideo_PAA);
+            searchForm.ShowDialog();
+            
+            
+        }
+    }
 }
