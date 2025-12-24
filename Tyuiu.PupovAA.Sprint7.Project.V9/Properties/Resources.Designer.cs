@@ -133,6 +133,16 @@ namespace Tyuiu.PupovAA.Sprint7.Project.V9.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap report_magnify {
+            get {
+                object obj = ResourceManager.GetObject("report_magnify", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Screenshot_2025_09_03_09_11_58_594_lockscreen {
             get {
                 object obj = ResourceManager.GetObject("Screenshot_2025-09-03-09-11-58-594_lockscreen", resourceCulture);

@@ -223,7 +223,7 @@ namespace Tyuiu.PupovAA.Sprint7.Project.V9
             {
                 return 0;
             }
-            string str = value.ToString().Replace(',', '.');
+            string str = value.ToString();
             return double.TryParse(str, out double result) ? result : 0;
         }
 
@@ -236,8 +236,14 @@ namespace Tyuiu.PupovAA.Sprint7.Project.V9
         {
             FormSearch_PAA searchForm = new FormSearch_PAA(dataGridViewVideo_PAA);
             searchForm.ShowDialog();
-            
-            
+
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            FormStatistics_PAA statisticsForm = new FormStatistics_PAA(dataGridViewVideo_PAA);
+            statisticsForm.ShowDialog();
         }
     }
 }

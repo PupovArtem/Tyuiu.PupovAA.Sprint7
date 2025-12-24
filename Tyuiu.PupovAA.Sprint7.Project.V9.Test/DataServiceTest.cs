@@ -17,8 +17,7 @@ namespace Tyuiu.PupovAA.Sprint7.Project.V9.Test
             {
             { "", "" },
             { "", "" },
-            { "", "" }
-            };
+            { "", "" }};
 
 
             string result = DataService.DeleteRows(testData);
@@ -31,11 +30,9 @@ namespace Tyuiu.PupovAA.Sprint7.Project.V9.Test
         public void SearchWord()
         {
             
-            string[,] testData = {
-                                    { "Иван", "25", "Москва" },
+            string[,] testData = {{ "Иван", "25", "Москва" },
                                     { "Петр", "30", "Питер" },
-                                    { "Мария", "25", "Москва" }
-                                                                    };
+                                    { "Мария", "25", "Москва" }};
             string searchText = "Петр";
 
             

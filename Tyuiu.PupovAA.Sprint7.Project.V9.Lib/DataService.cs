@@ -138,7 +138,7 @@ namespace Tyuiu.PupovAA.Sprint7.Project.V9.Lib
                     {
                         cellValue = "";
                     }
-                    if (cellValue.IndexOf(searchText, StringComparison.OrdinalIgnoreCase) >= 0)
+                    if (cellValue.Contains(searchText, StringComparison.OrdinalIgnoreCase)) //порядковое сравнение без учёта регистра
                     {
                         matches.Add((i, j));
                      }
@@ -146,7 +146,93 @@ namespace Tyuiu.PupovAA.Sprint7.Project.V9.Lib
             }
             return matches;
         }
-            
+        
+        public static int GetCount_PAA(string[,] data) //подсчёт количества видео
+        {
+            if (data == null || data.GetLength(0) <= 1)
+                return 0;
+                
+            return data.GetLength(0);
+        }
+
+        
+        public static double GetSum_PAA(string[,] data, int columnIndex)//сумма в столбце
+        {
+            if (data == null || columnIndex < 0 || columnIndex >= data.GetLength(1))
+                return 0;
+
+            double sum = 0;
+            int rows = data.GetLength(0);
+
+            for (int i =0; i < rows; i++) 
+            {
+                if (double.TryParse(data[i, columnIndex], out double value))
+                {
+                    sum += value;
+                }
+            }
+            return sum;
+        }
+
+        
+        public static double GetAverage_PAA(string[,] data, int columnIndex)  //среднее значение
+        {
+            int count = GetCount_PAA(data);
+            if (count == 0)
+            {
+                return 0;
+            }
+            double sum = GetSum_PAA(data, columnIndex);
+            return Math.Round(sum / count,3);
+        }
+
+        
+        public static double GetMin_PAA(string[,] data, int columnIndex)  //минимальное значение
+        {
+            if (data == null || data.GetLength(0) <= 1)
+                return 0;
+
+            double min = double.MaxValue;
+            bool found = false;
+
+            for (int i = 1; i < data.GetLength(0); i++)
+            {
+                if (double.TryParse(data[i, columnIndex], out double value))
+                {
+                    if (value < min) 
+                    {
+                        min = value;
+                        found = true;
+                    }
+                }
+            }
+
+            return found ? min : 0;
+        }
+
+        
+        public static double GetMax_PAA(string[,] data, int columnIndex) //максимальное значение
+        {
+            if (data == null || data.GetLength(0) <= 1)
+                return 0;
+
+            double max = double.MinValue;
+            bool found = false;
+
+            for (int i = 1; i < data.GetLength(0); i++)
+            {
+                if (double.TryParse(data[i, columnIndex], out double value))
+                {
+                    if (value > max) 
+                    {
+                        max = value;
+                        found = true;
+                    }
+                }
+            }
+
+            return found ? max : 0;
+        }  
         
     }
 }

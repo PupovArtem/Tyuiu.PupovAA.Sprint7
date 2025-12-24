@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tyuiu.PupovAA.Sprint7.Proje
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tyuiu.PupovAA.Sprint7.Project.V9", "Tyuiu.PupovAA.Sprint7.Project.V9\Tyuiu.PupovAA.Sprint7.Project.V9.csproj", "{1579CA9A-3791-33B8-EE18-52C69BCF9E06}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinFormsAppChart", "..\..\..\Downloads\WinFormsAppChart (1)\WinFormsAppChart\WinFormsAppChart\WinFormsAppChart.csproj", "{3B7F4A77-6867-08DC-3111-FC65DE0E31B2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{1579CA9A-3791-33B8-EE18-52C69BCF9E06}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1579CA9A-3791-33B8-EE18-52C69BCF9E06}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1579CA9A-3791-33B8-EE18-52C69BCF9E06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B7F4A77-6867-08DC-3111-FC65DE0E31B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B7F4A77-6867-08DC-3111-FC65DE0E31B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B7F4A77-6867-08DC-3111-FC65DE0E31B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B7F4A77-6867-08DC-3111-FC65DE0E31B2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

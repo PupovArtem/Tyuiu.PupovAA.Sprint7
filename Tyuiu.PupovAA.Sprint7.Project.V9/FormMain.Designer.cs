@@ -155,7 +155,7 @@
             // buttonDelete_PAA
             // 
             buttonDelete_PAA.Image = Properties.Resources.bullet_toggle_minus;
-            buttonDelete_PAA.Location = new Point(140, 22);
+            buttonDelete_PAA.Location = new Point(127, 24);
             buttonDelete_PAA.Name = "buttonDelete_PAA";
             buttonDelete_PAA.Size = new Size(105, 71);
             buttonDelete_PAA.TabIndex = 3;
@@ -189,20 +189,21 @@
             // 
             // button2
             // 
-            button2.Location = new Point(351, 22);
+            button2.Location = new Point(346, 25);
             button2.Name = "button2";
-            button2.Size = new Size(94, 69);
+            button2.Size = new Size(99, 69);
             button2.TabIndex = 6;
             button2.Text = "button2";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // buttonOpenSearch_PAA
             // 
-            buttonOpenSearch_PAA.Location = new Point(251, 22);
+            buttonOpenSearch_PAA.Image = Properties.Resources.report_magnify;
+            buttonOpenSearch_PAA.Location = new Point(238, 24);
             buttonOpenSearch_PAA.Name = "buttonOpenSearch_PAA";
-            buttonOpenSearch_PAA.Size = new Size(94, 71);
+            buttonOpenSearch_PAA.Size = new Size(102, 69);
             buttonOpenSearch_PAA.TabIndex = 5;
-            buttonOpenSearch_PAA.Text = "button1";
             buttonOpenSearch_PAA.UseVisualStyleBackColor = true;
             buttonOpenSearch_PAA.Click += buttonOpenSearch_PAA_Click;
             // 
